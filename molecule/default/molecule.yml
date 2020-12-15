@@ -1,0 +1,59 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
+platforms:
+  - name: system_users-molecule-centos-7-instance
+    image: "centos:centos7"
+    #    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: /usr/sbin/init
+  - name: system_users-molecule-centos-8-instance
+    image: "centos:centos8"
+    #    pre_build_image: true
+    privileged: true
+    tmpfs:
+     - /run
+     - /tmp
+    volumes:
+     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: /usr/sbin/init
+  - name: system_users-molecule-debian-buster-instance
+    image: python:3-buster
+    #    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: system_users-molecule-debian-stretch-instance
+    image: python:3-stretch
+#    pre_build_image: true
+    privileged: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: prepare.yml
+#  inventory:
+#    group_vars:
+#      # setting for the platform instance named 'instance'
+#      all:
+#        ansible_user: ansible
+verifier:
+  name: testinfra

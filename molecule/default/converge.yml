@@ -1,0 +1,18 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-role-system_users"
+      include_role:
+        name: "ansible-role-system_users"
+      vars:
+        system_users_groups:
+          - name: bob
+            state: present
+        system_users_users:
+          - name: bob
+            group: bob
+            state: present
+        system_users_authorized_keys:
+          - user: bob
+            key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZCJunWjqtZgnRJ3b8jj0MxJ04n/QDxFp8EAKtFOGfUDDucq6IOuwSZPsjG1Qfh5wqgd9Zs5H3pdYS4EEyikOof4BdLilGdnBC04/SETDsQ1r0mSgKK0egDOLsDBhywvqbjEmUBkd2XDvlEFft6lTMuxHZntM9EhlHYUw/w0Qti830gUqkEmYCwppBW2gJjUUZc9DKfyC0am1H6SfKbD4vR+1PABnKUojXOVTg7QUuCGaCywfToPqZ4eFL5cHmDQOsUkNgpDRHSaAeLHPMtgeHIvHj3P0btOF6kQCr3cVmjl0M2CXFwByk1GyL1fNSmEcjgssEBe33AVUGjifGwv+N root@e8076451786f

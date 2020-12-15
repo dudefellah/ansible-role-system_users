@@ -1,0 +1,11 @@
+---
+# defaults file for ansible-role-system_users
+#
+# All entries in this list will be passed to ansible.builtin.group
+system_users_groups: []
+
+# All entries in this list will be passed to ansible.builtin.user
+system_users_users: []
+
+# All entries in this list will be passed to ansible.posix.authorized_key
+system_users_authorized_keys: []

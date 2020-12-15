@@ -1,0 +1,31 @@
+---
+# tasks file for ansible-role-system_users
+- name: Update user groups
+  ansible.builtin.group: "{{ _system_group }}"
+  loop: "{{ system_users_groups }}"
+  loop_control:
+    loop_var: _system_group
+
+- name: Update user
+  ansible.builtin.user: "{{ _system_user }}"
+  loop: "{{ system_users_users }}"
+  loop_control:
+    loop_var: _system_user
+
+- name: Set public key(s)
+  ansible.posix.authorized_key: >-
+    {{ {
+        'comment': (_system_user_key.comment | default(omit)),
+        'exclusive': (_system_user_key.exclusive | default(omit)),
+        'follow': (_system_user_key.follow | default(omit)),
+        'key': (_system_user_key.key | default(omit)),
+        'key_options': (_system_user_key.key_options | default(omit)),
+        'manage_dir': (_system_user_key.manage_dir | default(omit)),
+        'path': (_system_user_key.path | default(omit)),
+        'state': (_system_user_key.state | default(omit)),
+        'user': (_system_user_key.user | default(omit)),
+        'validate_certs': (_system_user_key.validate_certs | default(omit)),
+      } }}
+  loop: "{{ system_users_authorized_keys }}"
+  loop_control:
+    loop_var: _system_user_key
