@@ -22,6 +22,7 @@ repos:
         "--exclude=molecule/resources",
         "--exclude=roles",
         "--exclude=.gitlab-ci.yml",
+        "--exclude=meta/requirements.yml",
         "."
       ]
 

@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: system_users
   author: Dan Thomson
   description: This is a very simple role to manage multiple users.
 
