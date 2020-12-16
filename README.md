@@ -23,7 +23,9 @@ this role as well.
 Requirements
 ------------
 
-None.
+For public keys, this role uses the [ansible.posix](https://github.com/ansible-collections/ansible.posix).
+You can use [meta/requirements.yml](meta/requirements.yml) to install it
+before making use of this role.
 
 Role Variables
 --------------

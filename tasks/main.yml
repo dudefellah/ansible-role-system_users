@@ -37,7 +37,6 @@
     key: "{{ _system_user_private_key.key }}"
     dest: "{{ _system_user_private_key.dest | default('.ssh/id_rsa') }}"
     overwrite: "{{ _system_user_private_key.overwrite | default(false) }}"
-
   loop: "{{ system_users_private_keys }}"
   loop_control:
     loop_var: _system_user_private_key

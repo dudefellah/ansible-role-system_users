@@ -7,7 +7,7 @@
   register: getent_passwd
 
 - name: Set the dest file full path
-  set_fact:
+  ansible.builtin.set_fact:
     _dest: >-
       {%- if dest.startswith('/') -%}
         {{ dest }}
@@ -16,12 +16,12 @@
       {%- endif -%}
 
 - name: Test for exiting file
-  stat:
+  ansible.builtin.stat:
     path: "{{ _dest }}"
   register: key_stat
 
 - name: Create destiation path if needed
-  file:
+  ansible.builtin.file:
     path: "{{ _dest | dirname }}"
     state: directory
     owner: "{{ user }}"
@@ -29,7 +29,7 @@
     mode: "0700"
 
 - name: Create the private key file
-  copy:
+  ansible.builtin.copy:
     content: "{{ key }}"
     dest: "{{ _dest }}"
     owner: "{{ user }}"
