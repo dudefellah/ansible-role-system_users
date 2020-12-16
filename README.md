@@ -37,6 +37,7 @@ They're repeated here for convenience, and since there's so few of them:
 |`system_users_users`|This is a list of user dicts to be passed to [ansible.builtin.user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html). See module documentation for more information. | `[]` |
 |`system_users_groups`|This is a list of group dicts to be passed to [ansible.builtin.group](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html). See module documentation for more information. | `[]` |
 |`system_users_authorized_keys`|This is a list of group dicts to be passed to [ansible.posix.authorized_key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html). See module documentation for more information. | `[]` |
+|`system_users_private_keys`|The private keys provided in this list will be added to the provided users' directories. Each entry in this list can contain the key(s) `['user', 'group', 'key', 'dest', 'overwrite']`. Further information on the use of each key is provided in [defaults/main.yml](defaults/main.yml) | `[]` |
 
 Dependencies
 ------------

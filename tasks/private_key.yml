@@ -1,0 +1,44 @@
+---
+- name: Get passwd entry for user
+  ansible.builtin.getent:
+    key: "{{ user }}"
+    database: passwd
+    split: ":"
+  register: getent_passwd
+
+- name: Set the dest file full path
+  set_fact:
+    _dest: >-
+      {%- if dest.startswith('/') -%}
+        {{ dest }}
+      {%- else -%}
+        {{ ansible_facts.getent_passwd[user][4] + '/' + dest }}
+      {%- endif -%}
+
+- name: Test for exiting file
+  stat:
+    path: "{{ _dest }}"
+  register: key_stat
+
+- name: Create destiation path if needed
+  file:
+    path: "{{ _dest | dirname }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group | default(ansible_facts.getent_passwd[2]) }}"
+    mode: "0700"
+
+- name: Create the private key file
+  copy:
+    content: "{{ key }}"
+    dest: "{{ _dest }}"
+    owner: "{{ user }}"
+    group: "{{ group | default(ansible_facts.getent_passwd[2]) }}"
+    mode: "0600"
+  when:
+    - >-
+      (not key_stat.stat.exists) or
+      (
+        (key_stat.stat.checksum != (key | checksum)) and
+        (overwrite|bool)
+      )

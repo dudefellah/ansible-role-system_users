@@ -9,3 +9,21 @@ system_users_users: []
 
 # All entries in this list will be passed to ansible.posix.authorized_key
 system_users_authorized_keys: []
+
+# Entries in this list will be used to supply user accounts with private
+# keys
+# Each entry in this is a dict with the following values:
+#
+#   key: This is a string of the private key to add - use a lookup or ansible
+#        vault string here to keep your actual key private
+#   user: This is the owner of the private key file and also is used to
+#         determine the desetination path, if an absolute path isn't provided
+#   group: This value defines the group ownership to provide to your private
+#          key file. Defaults to the user's group if omitted.
+#   dest: The destination path for the private key file. A non-absolute path
+#         (eg. a path that doesn't start with '/') will be placed relative
+#         to the supplied user home directory
+#   overwrite: If the file is to be overwritten, set this to true. Otherwise
+#              an existing private key file will be left alone.
+#
+system_users_private_keys: []

@@ -7,12 +7,81 @@
         name: "ansible-role-system_users"
       vars:
         system_users_groups:
+          - name: alice
+            state: present
           - name: bob
             state: present
         system_users_users:
+          - name: alice
+            group: alice
+            groups: bob
+            state: present
           - name: bob
             group: bob
             state: present
         system_users_authorized_keys:
+          - user: alice
+            key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC69xKsF9HQs6bcNEOfgIXjKQlVvUxjOApxfpwpg1AOzk/dIJs6OLUnm3tWXLSrKaqWBtWNtiOcHbA15rJx3pdwibTVcEQWqL+yEI4MTVpovVcOmVK4liU6Y5MZUHJz7zESe/xa0tYuiwBRF9iUh8Nre627SlFkyZojOW2hTjYU/iH5JhmWtDWTocU1w6YnlOaV4+0GXxNNPNtl+vGUBOg+Md9R3fYHLGp+O/QN+bXlQiCJuSGo6EG+2I3A74mOf/4jRlkY1VtiYTjXPzhU/2e9VlKU+fXeaHxln1K63XQf950Mts+8cb/ZsmY6IFJeAnreV3T/FT9oPCs1KwL3XLtH ansible@1974343da822
           - user: bob
             key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZCJunWjqtZgnRJ3b8jj0MxJ04n/QDxFp8EAKtFOGfUDDucq6IOuwSZPsjG1Qfh5wqgd9Zs5H3pdYS4EEyikOof4BdLilGdnBC04/SETDsQ1r0mSgKK0egDOLsDBhywvqbjEmUBkd2XDvlEFft6lTMuxHZntM9EhlHYUw/w0Qti830gUqkEmYCwppBW2gJjUUZc9DKfyC0am1H6SfKbD4vR+1PABnKUojXOVTg7QUuCGaCywfToPqZ4eFL5cHmDQOsUkNgpDRHSaAeLHPMtgeHIvHj3P0btOF6kQCr3cVmjl0M2CXFwByk1GyL1fNSmEcjgssEBe33AVUGjifGwv+N root@e8076451786f
+        system_users_private_keys:
+          - user: alice
+            overwrite: true
+            key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              MIIEpgIBAAKCAQEAuvcSrBfR0LOm3DRDn4CF4ykJVb1MYzgKcX6cKYNQDs5P3SCb
+              Oji1J5t7Vly0qymqlgbVjbYjnB2wNeaycd6XcIm01XBEFqi/shCODE1aaL1XDplS
+              uJYlOmOTGVByc+8xEnv8WtLWLosAURfYlIfDa3utu0pRZMmaIzltoU42FP4h+SYZ
+              lrQ1k6HFNcOmJ5TmlePtBl8TTTzbZfrxlAToPjHfUd32Byxqfjv0Dfm15UIgibkh
+              qOhBvtiNwO+Jjn/+I0ZZGNVbYmE41z84VP9nvVZSlPn13mh8ZZ9Sut10H/edDLbP
+              vHG/2bJmOiBSXgJ63ld0/xU/aDwrNSsC91y7RwIDAQABAoIBAQCH9mMayRuoxOyk
+              GFHQ7VrwLgh+1HF3eeqGTIdt3PNcQQZtDWg098YtbnFMBZDRJDTMc13bd0gAIMri
+              98hu7Gt+yHW7/a9WNxNof4d9RMdpgb+Me01ftLiP9Jelgg4pZxltksKandZp9GWf
+              k1LJ+MzRHhjiKZJ1U/KGiR3DfyfvLPw3FUZQYgXMXKz40wCthIyc+17ZSd6X3fCF
+              iyp5Dh4LOzFx9A1rKWwHyrnvdDr42d24wVxC2odkFt2mVf04Emg0p20zJHoPHe2B
+              0Q/DgfrUWC2Lo1MY5FDvrYH+bHhAKQXlcsSl4kVOQYD6yV2iNdB8bKDoPPs1GYAP
+              yCvNtg1xAoGBAPMxZAJq0kT8etCp5P9dPPp4/Xnabw9zvIUgX1wzcjtCq6u3DoDs
+              CmiLLas3XgLfbE09QVJ5SWkhogBQ1qFHek+TLkKH7jdl+am0tj7G5rGJzwTa4iQy
+              zbmg5aB+xU6LyjntDNx5R4CwyIE51FmW9ES9UCMfULLXW2PKMeigCB9ZAoGBAMTP
+              pXE0cWPSsU/4zGLAlQyYydTcBEFlySafyTr5TCXA2EIcwp95pSbOtq1LhfKlz1gj
+              RKlwe366xsMq99ZiePgAaJuM5yJVboXI1VwWMKfxj6mJmDL6qPKmZUIUDX8y5IiI
+              mmj1goE0coBHWrmbD4HyROWXQ5JfQJxlZA0ynfufAoGBANvndHSPHVXOLEwU5IJZ
+              UDN5RlNyRmzljbmffTtFNe0KK2uZmt7PEdZYy9H/vd3BJBBv7GpkTBJpnDDG6F1r
+              4dik0PbOLYUgi/J9+zGm76HoaC8OseBjpA1PxXQsTcPpudJJXRDcBeEDejsIDNF6
+              I6UovpcT0Qf2nqgMhLbCRrX5AoGBALArCnVtsv3er9bc5t6SchiHf0qo8qozWT3Y
+              k4DVfELi/vEW22NyuNEnAb/XNXxAzXugfiqJRBHpUFeM07G0DYI4o2pxUseZ30ej
+              wNAgEMeT47unLXSciLRDG6ptVrOAM66/UDAZawsKjl+i/2Pal6QC34b/wn14A9a6
+              rzddEqsTAoGBAJ+OSREvXPzoPHotm4wRe5RL3UEmXXi4ralodEQwSzz/NThEgFlf
+              3X9/YvCp6oBbI+LWJab1mVqVd2vQE1lZPx/zPZ+n1iv6fDZ9H3LWsGL9b4pfUAFK
+              PRBOkwWOLv/8TsZhRpVsCrCou9+OdvPukWGaTqBQj51lwd3lI4ToiSUc
+              -----END RSA PRIVATE KEY-----
+          - user: bob
+            key: |
+              -----BEGIN RSA PRIVATE KEY-----
+              MIIEpQIBAAKCAQEAm3FCA5JzytJm8E/WLJz4uIFEo29IclMLv2ExCScF7qfQGFlv
+              rIAYAPuYPn+jvAz8yC+eQiId9s01hEO/Il9c7Y5oq8/hYdAkg+njyWgULg1UQylz
+              Nf002W0jawdnVO5NzvblVri3+NOmHSXEne7OEYVqbM83Q3pftHXyo38YFcwCbzTF
+              liP6HgqgPEI1Ajy8KC+9j6hlnlfJsS6+Cm4pSGYPbzMIq2Agg098ex92nHOOHNiy
+              fJXOsckLuUL6govRaQ6f/araPMB8nX0ZAkyhGgGcoeeJHJ0ODh5DMpQpx9wJLRaG
+              qPjsb3/WP4XJxNkTs1MFFo86hGrAUQ2vGNaoUwIDAQABAoIBAEvEALFNCTOrKpGn
+              2HUWbgVAvPwMmftfjzJRZV1YsAOLuFql/VDPfuO7vpF4FY7rparNyw3hI0nQ7Gzz
+              uI5AfUMtTsewI+NRWPsTXfwlxvBLfu7dnVKLgN8Z21Gn4i37meFvZonGr6WRRD6g
+              0h1I8RiJNz6iIgW5+Dw14Xbf1BWLAIwqq9pCWw9jQXdp2JwWuYhbTuAj9iCRP2ua
+              yAFz4ZigpbSapnIqV9E36EdbDxj8KOt+prhN3OyVi4oJmZLjKuoaignf7eIRjC1v
+              vTtFyx+HR9eCVM+cVqqh3bJ4bUZTh8BpzaW8nBJN89oin8NuE+wFgxYoCRFoudns
+              2a4EwMECgYEAyOcrvPtx7XqVt0M+QZJc5jvUQxhZcyZHPbUTAJ8inqOwpRWKgzp4
+              Ltgly+gEMCDCQ01dCNW2FNkDy2a6iipvFMrCBlSe277LRVmhstEWIYbw98csB8uw
+              2XJcgznRJHFm3v7+prQDX78ZnYFu3bcbeT9gBs/+MZoHMzeQrrGo9XcCgYEAxhJt
+              f0zxF9gbNdJksi/1t4qcjvRN72tgHDLHRnUCTQ8+wdJAH0WPUzgFAW0PrvQiHUso
+              rwuviSp+aALdS2EtnayNctZLVsIthTvPxgQNvF/R8oEFpfkEAUNHGcIW0UninqPr
+              RK5KGVwjwIgOH52PxK+gS7Gb4EHCaT1WYIxgSwUCgYEAhJ9OWUfn8mwM71i9fU3g
+              c8AlJFGrov8u4kZpj+x9Txoh3yi0MmLjuZDIiq3ULe1CMGmes9lYhLSp85kSJWlT
+              wPcEVGeCIu/1ggdkXgX2xRUud3MM1uyZB0KeXaZKMPOHhEfy1RtaatddUoOCK2zX
+              /xdeDcE6PYY/oIjawufW8IsCgYEAjRxfygukz5n0eLm1Z4Tnh6VGuEmwpFtZE33R
+              no6J3yB3U1pYuG60F1OXrVZnj/r5uujqyRqIKi6N88fmpGdNOkHOW/vznJGmIH9m
+              HOqSZpvVVPE6du4bPlMR+nXeD6iVvPOHD10kCUEtb2L+vONho3yDtKmKJZBz0soS
+              GaKoj4kCgYEAnTCHYCa89gmEZLhNWFwiFqO0Em+Q5365jKbj7zFhCFzA/jq+3PBB
+              ejuUHWArC+q7cHH60zqnfxb/Dy44CMN1EgH/nbADzF2jlfXKwOVXfrSP9VG4ZmLJ
+              VS2ljv1DlMKA8RvDUYbo6WWBm9JS4tzXqRM2MVyyIbavMlbjYthAdXE=
+              -----END RSA PRIVATE KEY-----
+            dest: .ssh/id_rsa
