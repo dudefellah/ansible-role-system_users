@@ -34,7 +34,8 @@
   vars:
     user: "{{ _system_user_private_key.user | default(ansible_user) }}"
     group: "{{ _system_user_private_key.group | default(omit) }}"
-    key: "{{ _system_user_private_key.key }}"
+    key: "{{ _system_user_private_key.key | default(omit) }}"
+    src: "{{ _system_user_private_key.src | default(omit) }}"
     dest: "{{ _system_user_private_key.dest | default('.ssh/id_rsa') }}"
     overwrite: "{{ _system_user_private_key.overwrite | default(false) }}"
   loop: "{{ system_users_private_keys }}"
