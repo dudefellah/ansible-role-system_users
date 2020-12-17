@@ -31,10 +31,12 @@
 - name: Create the private key file
   ansible.builtin.copy:
     content: "{{ key }}"
+    src: "{{ src }}"
     dest: "{{ _dest }}"
     owner: "{{ user }}"
     group: "{{ group | default(ansible_facts.getent_passwd[2]) }}"
     mode: "0600"
+  no_log: "{{ system_users_no_log }}"
   when:
     - >-
       (not key_stat.stat.exists) or
