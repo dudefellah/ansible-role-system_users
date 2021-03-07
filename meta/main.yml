@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: system_users
-  author: Dan Thomson
+  author: dudefellah
   description: This is a very simple role to manage multiple users.
 
   issue_tracker_url: https://github.com/dudefellah/ansible-role-system_users
