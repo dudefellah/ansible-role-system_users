@@ -1,20 +1,20 @@
 ---
 # tasks file for ansible-role-system_users
 - name: Update user groups
-  ansible.builtin.group: "{{ _system_group }}"
+  group: "{{ _system_group }}"
   loop: "{{ system_users_groups }}"
   loop_control:
     loop_var: _system_group
 
 - name: Update user
-  ansible.builtin.user: "{{ _system_user }}"
+  user: "{{ _system_user }}"
   no_log: "{{ system_users_no_log }}"
   loop: "{{ system_users_users }}"
   loop_control:
     loop_var: _system_user
 
 - name: Set public key(s)
-  ansible.posix.authorized_key: >-
+  authorized_key: >-
     {{ {
         'comment': (_system_user_key.comment | default(omit)),
         'exclusive': (_system_user_key.exclusive | default(omit)),

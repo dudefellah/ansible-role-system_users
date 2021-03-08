@@ -1,13 +1,13 @@
 ---
 - name: Get passwd entry for user
-  ansible.builtin.getent:
+  getent:
     key: "{{ user }}"
     database: passwd
     split: ":"
   register: getent_passwd
 
 - name: Set the dest file full path
-  ansible.builtin.set_fact:
+  set_fact:
     _dest: >-
       {%- if dest.startswith('/') -%}
         {{ dest }}
@@ -16,12 +16,12 @@
       {%- endif -%}
 
 - name: Test for exiting file
-  ansible.builtin.stat:
+  stat:
     path: "{{ _dest }}"
   register: key_stat
 
 - name: Create destiation path if needed
-  ansible.builtin.file:
+  file:
     path: "{{ _dest | dirname }}"
     state: directory
     owner: "{{ user }}"
@@ -29,7 +29,7 @@
     mode: "0700"
 
 - name: Create the private key file
-  ansible.builtin.copy:
+  copy:
     content: "{{ key }}"
     src: "{{ src }}"
     dest: "{{ _dest }}"

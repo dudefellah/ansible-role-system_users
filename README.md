@@ -3,9 +3,9 @@ system_users
 
 This is a very simple role meant to make playbooks that manage users a little
 bit cleaner by allowing you to avoid manually running the
-[ansible.builtin.user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html),
-[ansible.buitin.groups](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html)
-and [ansible.posix.authorized_key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)
+[user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html),
+[groups](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html)
+and [authorized_key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)
 modules yourself. Instead, you just need to pass word `system_users_users`,
 `system_users_groups` and `system_users_authorized_keys` into each list
 and this role will run those modules for you.
@@ -17,15 +17,13 @@ modules as dicts, which is something that Ansible doesn't like for
 [security reasons](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#argsplat-unsafe).
 For that reason, it is recommended that you disable
 [INJECT_FACTS_AS_VARS](https://docs.ansible.com/ansible/devel/reference_appendices/config.html#inject-facts-as-vars)
-in Ansible. The security benefit of disabling this value extends beyond just
-this role as well.
+in Ansible. There are security benefits to disabling this value beyond this
+specific role.
 
 Requirements
 ------------
 
-For public keys, this role uses the [ansible.posix](https://github.com/ansible-collections/ansible.posix).
-You can use [meta/requirements.yml](meta/requirements.yml) to install it
-before making use of this role.
+None.
 
 Role Variables
 --------------
