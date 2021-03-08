@@ -36,6 +36,7 @@
     owner: "{{ user }}"
     group: "{{ group | default(ansible_facts.getent_passwd[2]) }}"
     mode: "0600"
+  no_log: "{{ system_users_no_log }}"
   when:
     - >-
       (not key_stat.stat.exists) or

@@ -8,6 +8,7 @@
 
 - name: Update user
   ansible.builtin.user: "{{ _system_user }}"
+  no_log: "{{ system_users_no_log }}"
   loop: "{{ system_users_users }}"
   loop_control:
     loop_var: _system_user

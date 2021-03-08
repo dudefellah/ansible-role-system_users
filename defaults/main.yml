@@ -27,3 +27,7 @@ system_users_authorized_keys: []
 #              an existing private key file will be left alone.
 #
 system_users_private_keys: []
+
+# User provisioning can leak sensitive information, so logging is disabled by
+# default. You can re-enable logging by setting this value to `false`.
+system_users_no_log: true
