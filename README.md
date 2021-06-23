@@ -59,7 +59,7 @@ Including an example of how to use your role (for instance, with variables passe
              - name: bob
                group: bob
            system_users_authorized_keys:
-             - name: bob
+             - user: bob
                key: "{{ lookup('file', 'my-key-path') }}"
 
 License
